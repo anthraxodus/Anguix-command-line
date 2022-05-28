@@ -39,11 +39,11 @@ If everything works fine, the reactions will be displayed on the Reactome Graph 
 When accessing your graph, you can reach for Sabio-RK reactions with the following cypher query: <br><br>
 
 **// SELECT ANGUIX** <br>
-**MATCH** (n:SabioRkReaction)-[:KinecticDatafor]-(k), (n)-[:GeneralReactionFor]-(r), (k)-[:ParameterInfo]->(p) <br>
+**MATCH** (n:SabioRkReaction)-[:kineticDataFor]-(k), (n)-[:generalReactionFor]-(r), (k)-[:parameterInfo]->(p) <br>
 **RETURN** n, k, r, p <br>
 
 # If you Regreted Using Anguix and Desire to Remove All Added Information:
 
 **// ERASE ANGUIX** <br>
-**MATCH** (n:SabioRkReaction)-[:KinecticDatafor]-(k), (n)-[:GeneralReactionFor]-(r), (k)-[:ParameterInfo]->(p) <br>
+**MATCH** (n:SabioRkReaction)-[:kinecticDataFor]-(k), (n)-[:generalReactionFor]-(r), (k)-[:parameterInfo]->(p) <br>
 **DETACH DELETE** n, k, p <br>
