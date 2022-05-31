@@ -8,7 +8,7 @@ from .NumpyEncoder import NumpyEncoder
 class NodeCreator:
     
     def __init__(self) -> None:
-        self._parent_cols    = [ 'SabioReactionID', 'EntryID', 'ReactomeReactionID', 'Pathway', 'ECNumber','Enzymename', 'Product', 'ReactionEquation']
+        self._parent_cols    = ['SabioReactionID', 'EntryID', 'ReactomeReactionID', 'Pathway', 'ECNumber','Enzymename', 'Product', 'ReactionEquation']
         self._child_rem_cols = ['SabioReactionID', 'ReactomeReactionID', 'Pathway', 'ECNumber','Enzymename', 'Product', 'ReactionEquation']
         self._child_groupby  = ['PubMedID', 'EnzymeVariant', 'KineticMechanismType']
         self._parent_groupby = ['SabioReactionID']
@@ -18,8 +18,6 @@ class NodeCreator:
         
         if 'Enzymename' in properties:
             properties['EnzymeName'] = properties.pop('Enzymename')
-        
-        #properties['ReactomeReactionID'] = eval(properties.pop('ReactomeReactionID'))
         
         match_query = ''
         reactome_relashionship = ''
@@ -32,12 +30,12 @@ class NodeCreator:
             
             reaction = 'r' + str(j)+str(i)
             match_query += f'({reaction}:Reaction{{stId:"{reactome_id}"}})'
-            reactome_relashionship += f'({parent_node})-[:GeneralReactionFor]->({reaction})'
+            reactome_relashionship += f'({parent_node})-[:generalReactionFor]->({reaction})'
         
         properties = json_dumps(properties, ensure_ascii=False, cls=NumpyEncoder)
         properties = re.sub(r'"([aA-zZ. ]+)":', r'\1:', properties)
         
-        create_query = f"({parent_node}:SabioRkReaction{properties}), {reactome_relashionship}"
+        create_query = f"({parent_node}:SabioRKReaction{properties}), {reactome_relashionship}"
         
         return create_query, match_query
 
@@ -52,7 +50,7 @@ class NodeCreator:
         properties = json_dumps(properties, ensure_ascii=False, cls=NumpyEncoder)
         properties = re.sub(r'"([aA-zZ0-9. ]+)":', r'\1:', properties)
         
-        return f"({child_label}:SabioRKReactionParameter{properties}), ({parent_label})-[:ParameterInfo]->({child_label})"
+        return f"({child_label}:SabioRKReactionParameter{properties}), ({parent_label})-[:parameterInfo]->({child_label})"
         
     def _create_query_child_node(self, child: pd.DataFrame, child_id: int, parent_id: int):
         
@@ -63,7 +61,7 @@ class NodeCreator:
         parent_label = f'c{str(parent_id)+str(child_id)}'
         properties   = json_dumps(properties, ensure_ascii=False, cls=NumpyEncoder)
         properties   = re.sub(r'"([aA-zZ0-9. ]+)":', r'\1:', properties)
-        query = f", ({parent_label}:SabioRKReactionKinectics{properties}), ({parent_label})-[:KinecticDatafor]->(p{parent_id})"
+        query = f", ({parent_label}:SabioRKReactionKinetics{properties}), ({parent_label})-[:kineticDatafor]->(p{parent_id})"
         
         for i in range(parameters_cols.shape[0]):
             data        = parameters_cols.iloc[[i]].dropna(axis=1)

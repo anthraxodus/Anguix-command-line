@@ -14,6 +14,12 @@ class Neo4jDB:
 
     def __del__(self):
         self._driver.close()
+        
+    def clean_up_anguix_database(self) -> None:
+        delete_query = 'MATCH (n:SabioRKReaction)-[:kineticDatafor]-(k), (n)-[:generalReactionFor]-(r), (k)-[:parameterInfo]->(p) DETACH DELETE n, k, p'
+
+        with self._driver.session() as session:
+            session.run(delete_query)
     
     def insert(self, queries: List[str]) -> None:
         

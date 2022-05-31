@@ -59,6 +59,7 @@ class AnguixBaseFormat:
         
         print('Saving into the database...')
         start = time.time()
+        self._neo4jDB.clean_up_anguix_database()
         self._neo4jDB.insert(queries)
         end = time.time()
         
