@@ -35,7 +35,7 @@ class NodeCreator:
         properties = json_dumps(properties, ensure_ascii=False, cls=NumpyEncoder)
         properties = re.sub(r'"([aA-zZ. ]+)":', r'\1:', properties)
         
-        create_query = f"({parent_node}:SabioRKReaction{properties}), {reactome_relashionship}"
+        create_query = f"({parent_node}:SabioRkReaction{properties}), {reactome_relashionship}"
         
         return create_query, match_query
 
@@ -61,7 +61,7 @@ class NodeCreator:
         parent_label = f'c{str(parent_id)+str(child_id)}'
         properties   = json_dumps(properties, ensure_ascii=False, cls=NumpyEncoder)
         properties   = re.sub(r'"([aA-zZ0-9. ]+)":', r'\1:', properties)
-        query = f", ({parent_label}:SabioRKReactionKinetics{properties}), ({parent_label})-[:kineticDatafor]->(p{parent_id})"
+        query = f", ({parent_label}:SabioRKReactionKinetics{properties}), ({parent_label})-[:kineticDataFor]->(p{parent_id})"
         
         for i in range(parameters_cols.shape[0]):
             data        = parameters_cols.iloc[[i]].dropna(axis=1)

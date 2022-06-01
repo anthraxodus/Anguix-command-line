@@ -34,6 +34,9 @@ class AnguixBaseFormat:
         common_index = reactome_df['displayName'].str.lower().isin(sabioRkList) 
 
         return reactome_df[common_index], reactome_df.shape[0], len(sabioRkList)
+    
+    def clean_up_previous_work(self) -> None:
+        self._neo4jDB.clean_up_anguix_database()
 
     def work(self, organism: pd.DataFrame)-> List[StepInfo]:
         """Download and process SabioRK's data
@@ -59,7 +62,6 @@ class AnguixBaseFormat:
         
         print('Saving into the database...')
         start = time.time()
-        self._neo4jDB.clean_up_anguix_database()
         self._neo4jDB.insert(queries)
         end = time.time()
         

@@ -19,6 +19,9 @@ print(msg)
 mode = str(input('Please, choose an operation mode (Auto, Manual or Custom): '))
 statistics = []
 
+print("Cleaning any work before...")
+apbf.clean_up_previous_work()
+
 if mode == 'Manual':
     print('You chose the Manual mode, please select an organism that you desire to add to Reactome Graph Database: ')
     print_organism_list(organismsAvailable_df['displayName'])
