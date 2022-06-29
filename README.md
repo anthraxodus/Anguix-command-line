@@ -86,7 +86,8 @@ RETURN r, x, z
 
 ```
 // ERASE ANGUIX
-MATCH (n:SabioRkReaction)-[:kineticDataFor]-(k), (n)-[:generalReactionFor]-(r), (k)-[:parameterInfo]->(p)
+MATCH (n:SabioRkReaction)-[:kineticDataFor]-(k), (n)-[:generalReactionFor]-(r), 
+(k)-[:parameterInfo]->(p)
 DETACH DELETE n, k, p
 ```
 
@@ -219,7 +220,7 @@ organisms from Reactome.
 constants or **Auto**, where the user adds all the possible organisms, and does this using the classes previously determined to make the program
 work.
 
-7. Dependencies:
+7. **Dependencies**:
 
     - Pandas
     - Requests
