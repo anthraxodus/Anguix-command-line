@@ -11,7 +11,7 @@ This software aggregates Sabio-RK information to a pre-existent Neo4J Reactome G
 
 scheme = "neo4j" <br>
 host_name = "localhost" <br>
-database = graph.db <br>
+database = **Your Database Name** <br>
 port = **Your Port** <br>
 user = **Your Username** <br>
 password = **Your Password** <br>
