@@ -3,9 +3,9 @@ This software aggregates Sabio-RK information to a pre-existent Neo4J Reactome G
 
 # Before you Start!
 
-- Before use this software, please install **Neo4J Desktop** version and add the latest version of **Reactome Graph Database**, according their instructions.
-- Once downloaded, create a folder called "**.env**" in the project main folder. This will contain your local information to be able to add the new nodes.
-- Before using the software, open Neo4J Desktop and run the **Reactome Graph Database**, after this, you're ready to use **Anguix Command Line Version**.
+- Before use this software, please install <a href="https://neo4j.com/download/">**Neo4J Desktop**</a> version and add the latest version of <a href="https://reactome.org/dev/graph-database/neo4j-desktop">**Reactome Graph Database**</a>, according their instructions.    
+- Once downloaded, create a file called "**.env**" in the project main folder. This will contain your local information to be able to add the new nodes.
+- Before using the software, open **Neo4J Desktop** and run the **Reactome Graph Database**. The status needs to be **Active** during the entire **Anguix Graph Database** execution. After these procedures, you're ready to use **Anguix Command Line Version**.
 
 # .env File Model
 
